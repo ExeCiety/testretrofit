@@ -1,6 +1,7 @@
 package com.execiety.testapi.Rest;
 
 import com.execiety.testapi.Model.Login.Login;
+import com.execiety.testapi.Model.Pinjaman.Pinjaman;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -24,4 +25,8 @@ public interface ApiInterface {
     //pake RequestBody karena apinya minta form-data
     //Info Lebih Lanjut : https://square.github.io/retrofit/
     Call<Login> Login_User(@Part("username") RequestBody username, @Part("password") RequestBody password);
+
+    @Multipart
+    @POST("Pinjaman/pinj_anggota")
+    Call<Pinjaman> Get_Pinjaman(@Part("idanggota") RequestBody idanggota);
 }

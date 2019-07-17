@@ -28,6 +28,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
+    SharedPrefManager sharedPrefManager;
+
     ApiInterface mApiInterface;
 
     private EditText et_username, et_password;
@@ -37,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPrefManager = new SharedPrefManager(this);
+        check_login();
 
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
 
@@ -62,6 +67,14 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         }
     }
 
+    public void check_login() {
+        if (sharedPrefManager.getSPSudahLogin() == true){
+            startActivity(new Intent(MainActivity.this, Dashboard.class)
+                    .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+            finish();
+        }
+    }
+
     public void check_user(String username, String password) {
 
         //Buat RequestBody dari username, password yg di input user
@@ -69,9 +82,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         RequestBody Rpassword = RequestBody.create(MediaType.parse("text/plain"), password);
 
         //inisialisasi kalo kita bakal make api dengan metode yg mana
-        Call<Login> kontakCall = mApiInterface.Login_User(Rusername, Rpassword);
+        Call<Login> loginCall = mApiInterface.Login_User(Rusername, Rpassword);
         //Mencoba untuk menghungi api
-        kontakCall.enqueue(new Callback<Login>() {
+        loginCall.enqueue(new Callback<Login>() {
             @Override
             public void onResponse(Call<Login> call, Response<Login>
                     response) {
@@ -96,10 +109,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
 
                         Intent dashboard = new Intent(MainActivity.this, Dashboard.class);
-                        dashboard.putExtra("id_anggota", data_login[0]);
-                        dashboard.putExtra("no_anggota", data_login[1]);
-                        dashboard.putExtra("nama_anggota", data_login[2]);
-                        dashboard.putExtra("nik_anggota", data_login[3]);
+
+                        sharedPrefManager.saveSPInt(SharedPrefManager.SP_ID_ANGGOTA, Integer.parseInt(data_login[0]));
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_NO_ANGGOTA, data_login[1]);
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_NAMA_ANGGOTA, data_login[2]);
+                        sharedPrefManager.saveSPString(SharedPrefManager.SP_NIK_ANGGOTA, data_login[3]);
+                        sharedPrefManager.saveSPBoolean(SharedPrefManager.SP_SUDAH_LOGIN, true);
 
                         startActivity(dashboard);
                         finish();

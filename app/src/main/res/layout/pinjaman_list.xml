@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/tv_list_id_pinjaman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Id Pinjaman"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/tv_list_nama_anggota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Nama Anggota"
+            android:layout_below="@id/tv_list_id_pinjaman"
+            android:textSize="15sp" />
+        <TextView
+            android:id="@+id/tv_list_no_anggota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="No Anggota"
+            android:textSize="15sp"
+            android:layout_below="@id/tv_list_nama_anggota" />
+        <TextView
+            android:id="@+id/tv_list_nik_anggota"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="NIK Anggota"
+            android:textSize="15sp"
+            android:layout_below="@id/tv_list_no_anggota" />
+        <TextView
+            android:id="@+id/tv_list_no_pinjaman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="No Pinjaman"
+            android:textSize="15sp"
+            android:layout_below="@id/tv_list_nik_anggota" />
+        <TextView
+            android:id="@+id/tv_list_jenis_pinjaman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Jenis Pinjaman"
+            android:textSize="15sp"
+            android:layout_below="@id/tv_list_no_pinjaman" />
+        <TextView
+            android:id="@+id/tv_list_total_tagihan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Total Tagihan"
+            android:textSize="15sp"
+            android:layout_below="@id/tv_list_jenis_pinjaman" />
+        <TextView
+            android:id="@+id/tv_list_total_terbayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Total Terbayar"
+            android:textSize="15sp"
+            android:layout_below="@id/tv_list_total_tagihan" />
+        <TextView
+            android:id="@+id/tv_list_total_sisa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Total Sisa"
+            android:textSize="15sp"
+            android:layout_below="@id/tv_list_total_terbayar" />
+        <TextView
+            android:id="@+id/tv_list_jatuh_tempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Jatuh Tempo"
+            android:textSize="15sp"
+            android:layout_below="@id/tv_list_total_sisa" />
+
+    </RelativeLayout>
+    <View
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"/>
+
+</LinearLayout>
